@@ -17,7 +17,7 @@ const Contact = () => {
     e.preventDefault();
   
     try {
-      const res = await axios.post("http://localhost:3000/contact", formData);
+      const res = await axios.post("https://ag-agency-1.onrender.com/contact", formData);
       setStatus(res.data.message);
   
       const emailData = {
