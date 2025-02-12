@@ -3,8 +3,24 @@ import axios from "axios";
 import { motion } from "framer-motion";
 import emailjs from "emailjs-com";
 import { AiFillPhone } from "react-icons/ai"; // Phone Icon
+import { Link } from "react-router-dom";
+import { useEffect } from "react";
+import Logo from "./images/logo.jpeg";
+import { FaInstagram, FaLinkedin, FaHome, FaEnvelope, FaDollarSign, FaBars, FaTimes } from "react-icons/fa";
 
 const Contact = () => {
+  const [sidebarOpen, setSidebarOpen] = useState(false);
+
+  // Disable background scrolling when sidebar is open
+  useEffect(() => {
+    if (sidebarOpen) {
+      document.body.classList.add("overflow-hidden");
+    } else {
+      document.body.classList.remove("overflow-hidden");
+    }
+
+    return () => document.body.classList.remove("overflow-hidden");
+  }, [sidebarOpen]);
   const [formData, setFormData] = useState({ name: "", email: "", message: "" });
   const [status, setStatus] = useState("");
   const form = useRef(null); // ✅ Create a ref for the form
@@ -50,6 +66,47 @@ const Contact = () => {
 
   return (
     <div className="min-h-screen flex flex-col items-center justify-center bg-gradient-to-br from-gray-900 via-gray-800 to-black text-white p-6">
+      {/* Hamburger Menu for Mobile */}
+      <div className="absolute top-4 left-4 z-50 md:hidden">
+        <button onClick={() => setSidebarOpen(!sidebarOpen)} className="text-white text-3xl">
+          {sidebarOpen ? <FaTimes /> : <FaBars />}
+        </button>
+      </div>
+
+      {/* Sidebar */}
+      <motion.div
+        className={`fixed top-0 left-0 w-60 bg-gray-800 h-screen flex flex-col pt-10 shadow-lg 
+                   transition-transform duration-300 md:translate-x-0 
+                   ${sidebarOpen ? "translate-x-0" : "-translate-x-full"} md:block`}
+      >
+        {/* Centered Logo */}
+        <div className="flex justify-center w-full">
+          <img src={Logo} alt="AG Logo" className="w-24 h-24 rounded-full border-4 border-gray-700 shadow-lg mb-6" />
+        </div>
+
+        {/* Sidebar Links */}
+        <div className="flex flex-col w-full text-lg font-semibold space-y-4 px-6">
+          <Link to="/" className="flex items-center gap-3 py-3 hover:bg-gray-700 rounded-md transition">
+            <FaHome className="text-white" /> Home
+          </Link>
+          <Link to="/services" className="flex items-center gap-3 py-3 hover:bg-gray-700 rounded-md transition">
+            📂 Previous Work
+          </Link>
+          <Link to="/pricing" className="flex items-center gap-3 py-3 hover:bg-gray-700 rounded-md transition">
+            <FaDollarSign className="text-white" /> Pricing
+          </Link>
+        </div>
+
+        {/* Social Icons */}
+        <div className="mt-10 pb-6 flex justify-center gap-6">
+          <a href="https://www.instagram.com/azhaguraja20" target="_blank" rel="noopener noreferrer" className="text-pink-500 hover:text-pink-400 text-2xl">
+            <FaInstagram />
+          </a>
+          <a href="https://www.linkedin.com/in/azhaguraja-r-48232723a/" target="_blank" rel="noopener noreferrer" className="text-blue-500 hover:text-blue-400 text-2xl">
+            <FaLinkedin />
+          </a>
+        </div>
+      </motion.div>
       {/* ✅ Assign ref to form */}
       <motion.form
         ref={form} // ✅ Attach ref
