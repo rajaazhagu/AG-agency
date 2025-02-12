@@ -2,7 +2,7 @@ import { motion, useInView } from "framer-motion";
 import { Link } from "react-router-dom";
 import { useRef } from "react";
 import Logo from "./images/logo.webp"; // Replace with your logo path
-
+import { FaInstagram, FaLinkedin } from "react-icons/fa";
 // Reusable Service Card Component
 const ServiceCard = ({ title, desc, color, delay }) => {
   const ref = useRef(null);
@@ -28,7 +28,7 @@ const ServiceCard = ({ title, desc, color, delay }) => {
 
 const Home = () => {
   return (
-    <div className="bg-gray-900 text-white min-h-screen flex flex-col items-center justify-center text-center p-6 md:justify-start md:pt-12">
+    <div className="bg-gray-900 text-white min-h-screen flex flex-col items-center text-center p-6 md:pt-12">
       
       {/* Logo and Title */}
       <motion.div 
@@ -54,59 +54,99 @@ const Home = () => {
         </motion.h1>
       </motion.div>
 
-      {/* New Subtitle Box with Vibrant Colors */}
+      {/* Subtitle Box */}
       <motion.div
-  className="mt-6 px-8 py-4 rounded-lg text-lg md:text-xl font-bold text-white 
-             bg-gradient-to-r from-purple-600 via-blue-500 to-cyan-400 
-             shadow-lg"
-  initial={{ opacity: 0, scale: 0.8 }}
-  animate={{ opacity: 1, scale: 1 }}
-  transition={{ duration: 0.6, delay: 0.2 }}
->
-  Elevate your business with cutting-edge websites & apps!
-</motion.div>
-
-
-
-      {/* Animated Buttons Section with Flowing Gradient Animation */}
-     {/* Animated Buttons Section */}
-{/* Buttons Section */}
-<div className="mt-8 flex flex-col md:flex-row gap-8">
-  {["Services", "Contact", "Pricing"].map((text, index) => (
-    <motion.div
-      key={index}
-      whileHover={{ scale: 1.1 }}
-      whileTap={{ scale: 0.9 }}
-      className="w-full md:w-auto"
-    >
-      <Link
-        to={`/${text.toLowerCase().replace(" ", "")}`}
-        className="px-6 py-3 rounded-md text-lg font-semibold transition-all duration-300 
-                   bg-blue-500 text-white hover:bg-blue-800 
-                   shadow-lg hover:shadow-xl transform hover:-translate-y-1"
+        className="mt-6 px-8 py-4 rounded-lg text-lg md:text-xl font-bold text-white 
+                   bg-gradient-to-r from-purple-600 via-blue-500 to-cyan-400 shadow-lg"
+        initial={{ opacity: 0, scale: 0.8 }}
+        animate={{ opacity: 1, scale: 1 }}
+        transition={{ duration: 0.6, delay: 0.2 }}
       >
-        {text}
-      </Link>
-    </motion.div>
-  ))}
-</div>
+        Elevate your business with cutting-edge websites & apps!
+      </motion.div>
 
+      {/* Buttons Section */}
+      <div className="mt-8 flex flex-col md:flex-row gap-8">
+        {["Contact", "Pricing"].map((text, index) => (
+          <motion.div
+            key={index}
+            whileHover={{ scale: 1.1 }}
+            whileTap={{ scale: 0.9 }}
+            className="w-full md:w-auto"
+          >
+            <Link
+              to={`/${text.toLowerCase().replace(" ", "")}`}
+              className="px-6 py-3 rounded-md text-lg font-semibold transition-all duration-300 
+                         bg-blue-500 text-white hover:bg-blue-800 
+                         shadow-lg hover:shadow-xl transform hover:-translate-y-1"
+            >
+              {text}
+            </Link>
+          </motion.div>
+        ))}
+      </div>
 
-      {/* Previous Work Section */}
+      {/* Previous Work Button */}
+      <motion.div
+        className="mt-8"
+        whileHover={{ scale: 1.1 }}
+        whileTap={{ scale: 0.9 }}
+      >
+        <Link
+          to="/services"
+          className="px-6 py-3 rounded-md text-lg font-semibold transition-all duration-300 
+                    bg-gradient-to-r from-purple-600 via-blue-500 to-cyan-400 shadow-lg text-white 
+                     hover:from-purple-600 hover:to-red-600 
+                     shadow-lg hover:shadow-xl transform hover:-translate-y-1"
+        >
+          📂 View Previous Work
+        </Link>
+      </motion.div>
+
+      {/* Our Services Section */}
       <div className="mt-12 w-full max-w-6xl">
-        <h2 className="text-2xl font-bold mb-6 bg-gradient-to-r from-green-400 to-blue-500 text-transparent bg-clip-text">
-          📂 Our Previous Work
-        </h2>
+        <h1 className="text-4xl font-bold text-center 
+                        bg-gradient-to-r from-pink-400 via-orange-400 to-yellow-300 
+                        text-transparent bg-clip-text">
+          💼 Our Services
+        </h1>
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 mt-6">
           {[
-            { title: "🛒 eCommerce Store", desc: "Built a fully functional online store with secure checkout.", color: "from-blue-400 to-blue-600" },
-            { title: "🏢 Business Website", desc: "Designed a professional website for a startup.", color: "from-green-400 to-green-600" },
-            { title: "📱 Mobile App UI", desc: "Created a responsive UI for a mobile app.", color: "from-purple-400 to-purple-600" },
+            { title: "🌍 Business Websites", desc: "We create modern websites that help businesses grow.", color: "from-blue-400 to-blue-600" },
+            { title: "🛍️ eCommerce Stores", desc: "Fully functional online stores with payment integration.", color: "from-green-400 to-green-600" },
+            { title: "💻 Custom Web Apps", desc: "Tailored web applications for businesses & startups.", color: "from-purple-400 to-purple-600" },
+            { title: "⚡ No-Code Development", desc: "We build apps using No-Code & Low-Code platforms like Webflow & Bubble.", color: "from-yellow-400 to-yellow-600" },
+            { title: "📢 Digital Marketing", desc: "SEO, Google Ads, & Social Media Marketing to grow your business.", color: "from-red-400 to-red-600" },
           ].map((service, index) => (
             <ServiceCard key={index} title={service.title} desc={service.desc} color={service.color} delay={index * 0.1} />
           ))}
         </div>
       </div>
+
+      <footer className="mt-12 py-6 w-full text-center bg-gradient-to-r from-gray-900 via-gray-950 to-black">
+  <p className="text-gray-400 text-sm font-semibold">© 2025 AG Innovate. All rights reserved.</p>
+
+  {/* Social Media Links */}
+  <div className="flex justify-center gap-6 mt-4">
+    <a
+      href="https://www.instagram.com/azhaguraja20?igsh=MTVxMjc4bTV4NzNmaQ%3D%3D" // Replace with your Instagram link
+      target="_blank"
+      rel="noopener noreferrer"
+      className="text-pink-500 hover:text-pink-400 transition duration-300 text-2xl"
+    >
+      <FaInstagram />
+    </a>
+    <a
+      href="https://www.linkedin.com/in/azhaguraja-r-48232723a/" // Replace with your LinkedIn link
+      target="_blank"
+      rel="noopener noreferrer"
+      className="text-blue-500 hover:text-blue-400 transition duration-300 text-2xl"
+    >
+      <FaLinkedin />
+    </a>
+  </div>
+</footer>
+
     </div>
   );
 };
