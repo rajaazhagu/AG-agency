@@ -65,6 +65,22 @@ const Home = () => {
         Elevate your business with cutting-edge websites & apps!
       </motion.div>
 
+ {/* Previous Work Button */}
+ <motion.div
+        className="mt-8"
+        whileHover={{ scale: 1.1 }}
+        whileTap={{ scale: 0.9 }}
+      >
+        <Link
+          to="/services"
+          className="px-6 py-3 rounded-md text-lg font-semibold transition-all duration-300 
+                    bg-gradient-to-r from-purple-600 via-blue-500 to-cyan-400 shadow-lg text-white 
+                     hover:from-purple-600 hover:to-red-600 
+                     shadow-lg hover:shadow-xl transform hover:-translate-y-1"
+        >
+          📂 View Previous Work
+        </Link>
+      </motion.div>
       {/* Buttons Section */}
       <div className="mt-8 flex flex-col md:flex-row gap-8">
         {["Contact", "Pricing"].map((text, index) => (
@@ -86,22 +102,7 @@ const Home = () => {
         ))}
       </div>
 
-      {/* Previous Work Button */}
-      <motion.div
-        className="mt-8"
-        whileHover={{ scale: 1.1 }}
-        whileTap={{ scale: 0.9 }}
-      >
-        <Link
-          to="/services"
-          className="px-6 py-3 rounded-md text-lg font-semibold transition-all duration-300 
-                    bg-gradient-to-r from-purple-600 via-blue-500 to-cyan-400 shadow-lg text-white 
-                     hover:from-purple-600 hover:to-red-600 
-                     shadow-lg hover:shadow-xl transform hover:-translate-y-1"
-        >
-          📂 View Previous Work
-        </Link>
-      </motion.div>
+     
 
       {/* Our Services Section */}
       <div className="mt-12 w-full max-w-6xl">
